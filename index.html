@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Math-VR Benchmark & CodePlot-CoT: Mathematical Visual Reasoning by Thinking with Code-Driven Images">
+  <meta property="og:title" content="Math-VR & CodePlot-CoT"/>
+  <meta property="og:description" content="A large-scale bilingual dataset and code-driven CoT paradigm for mathematical visual reasoning."/>
+  <meta property="og:url" content="https://hku-mmlab.github.io/Math-VR-CodePlot-CoT/"/>
+  <meta property="og:image" content="static/images/math_vr_banner.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:title" content="Math-VR & CodePlot-CoT">
+  <meta name="twitter:description" content="A large-scale bilingual dataset and code-driven CoT paradigm for mathematical visual reasoning.">
+  <meta name="twitter:image" content="static/images/math_vr_twitter_banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="Math-VR, CodePlot-CoT, Mathematical Reasoning, Visual Reasoning, Vision Language Models, Code Generation, Benchmark, Dataset">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math-VR & CodePlot-CoT</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    body { zoom: 1.0; }
+    .leaderboard-content { display: none; }
+    .leaderboard-content.is-active { display: block; }
+    .tabs li.is-active a {
+      font-weight: bold;
+      color: #3273dc;
+    }
+    .table-container { overflow-x: auto; padding-bottom: 1rem; }
+    .leaderboard-table th {
+      text-align: center !important;
+      vertical-align: middle !important;
+      position: sticky;
+      top: 0;
+      background-color: #f5f5f5;
+    }
+    .leaderboard-table td, .leaderboard-table th {
+      white-space: nowrap;
+      padding: 0.5em 0.75em;
+    }
+    .gold { background-color: #FFECB3 !important; }
+    .silver { background-color: #E0E0E0 !important; }
+    .bronze { background-color: #FFDAB9 !important; }
+    .model-cell { font-weight: bold; }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="./visualizer/data/data_public.js" defer></script>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Math-VR & CodePlot-CoT</h1>
+            <h1 class="title is-1 publication-title">Mathematical Visual Reasoning by Thinking with Code-Driven Images</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=r9qb4ZwAAAAJ&hl=zh-CN" target="_blank">Chengqi Duan</a><sup>1*</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=mieuBzUAAAAJ&hl=zh-CN&oi=ao" target="_blank">Kaiyue Sun</a><sup>1*</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=FtH3CW4AAAAJ&hl=en" target="_blank">Rongyao Fang</a><sup>3*</sup>,</span>
+              <span class="author-block"><a href="https://manyuan97.github.io/" target="_blank">Manyuan Zhang</a><sup>2†</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=m4f3F4cAAAAJ&hl=en" target="_blank">Yan Feng</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?hl=en&user=-VlvW5IAAAAJ" target="_blank">Ying Luo</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?hl=en&user=0V2WCSIAAAAJ" target="_blank">Yufang Liu</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=woY4bS8AAAAJ&hl=zh-CN&oi=sra" target="_blank">Ke Wang</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://www.linkedin.com/in/peng-pei-7584a839/" target="_blank">Peng Pei</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://maimai.cn/contact/share/card?u=fudmdwckxlwi" target="_blank">Xunliang Cai</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://www.ee.cuhk.edu.hk/~hsli/" target="_blank">Hongsheng Li</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=XqLiBQMAAAAJ&hl=zh-CN&oi=ao" target="_blank">Yi Ma</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://xh-liu.github.io/" target="_blank">Xihui Liu</a><sup>1✉️</sup></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>HKU&ensp;&ensp; <sup>2</sup>Meituan&ensp;&ensp; <sup>3</sup>CUHK</span>
+              <span class="eql-cntrb"><small><br><sup>*</sup>Equal Contribution&ensp;&ensp; <sup>†</sup>Project Lead&ensp;&ensp; <sup>✉️</sup>Corresponding Author</small></span>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/HKU-MMLab/Math-VR-CodePlot-CoT" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/gogoduan/Math-VR-train" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><p>🤗</p></span>
+                    <span>Training Dataset</span>
+                  </a>
+                </span>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/gogoduan/Math-VR-bench" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><p>🤗</p></span>
+                    <span>Benchmark Dataset</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="has-text-centered">
+          <img src="static/images/teaser.png" alt="Teaser Image for Math-VR" style="max-width:100%; height:auto;">
+        </div>
+        <h2 class="subtitle has-text-centered">
+          We introduce <b>Math-VR</b>, the first large-scale bilingual dataset and Benchmark for mathematical visual reasoning, and <b>CodePlot-CoT</b>, a novel code-driven Chain-of-Thought paradigm that enables models to "think with images" by generating executable plotting code.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-small" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h1 class="title is-3">Abstract</h1>
+          <div class="content has-text-justified">
+            <p>
+              Recent advances in Vision Language Models (VLMs) have shown significant progress in mathematical reasoning, yet they still face a critical bottleneck with problems that require visual assistance, such as drawing auxiliary lines or plotting functions. Most VLMs are constrained to text-only reasoning, while unified models that generate interleaved text and images often lack the precision required for mathematical tasks.
+              We present CodePlot-CoT, a code-driven Chain-of-Thought (CoT) paradigm that enables models to "think with images" in mathematics. Our approach leverages a VLM to generate both textual reasoning and executable plotting code. This code is then rendered into an image, serving as a "visual thought" that is reinput into the model to aid in problem solving. To facilitate this, we introduce Math-VR, the first large-scale, bilingual dataset and benchmark for mathematical problems requiring visual reasoning, comprising 178K samples. We also developed MatplotCode, a specialized image-to-code converter to generate high-quality training data. We benchmark SOTA models on our Math-VR. Our experiments show that CodePlot-CoT achieves up to a 21% performance increase over its base model, demonstrating the effectiveness of our code-driven reasoning paradigm.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light" id="contributions">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h1 class="title is-3">Contributions</h1>
+          <div class="content has-text-justified">
+            <ul>
+              <li><b>Math-VR:</b> The first large-scale, bilingual (English and Chinese) dataset and benchmark (178K samples) for mathematical problems with visual reasoning.</li>
+              <li><b>CodePlot-CoT:</b> A novel and efficient paradigm that enables VLMs to engage in visual reasoning through code generation.</li>
+              <li><b>MatplotCode:</b> A state-of-the-art image-to-code converter for mathematical figures, achieving 100% code execution success rate and high reconstruction fidelity.</li>
+              <li><b>Strong Empirical Results:</b> CodePlot-CoT achieves up to a 21% performance increase over strong baselines on the Math-VR benchmark.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaderboard Section -->
+  <section class="section" id="leaderboard">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Math-VR Benchmark Results</h2>
+      <div class="content">
+        <p class="has-text-centered">Benchmark on 2,500 English questions (1,000 Text + 1,500 Multimodal). Metrics: Process Score (PS) and Answer Correctness (AC).</p>
+        <div class="tabs is-centered is-boxed">
+          <ul id="leaderboard-tabs">
+            <li class="is-active" data-tab="1"><a>VLMs & Unified Models</a></li>
+            <li data-tab="2"><a>LLMs</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- VLMs & UMs -->
+          <div id="leaderboard-tab-1" class="leaderboard-content is-active">
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth leaderboard-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Model</th>
+                  <th>Link</th>
+                  <th>Version</th>
+                  <th>#Params</th>
+                  <th>Type</th>
+                  <th>Thinking</th>
+                  <th>Overall (AC)</th>
+                  <th>Overall (PS)</th>
+                  <th>Text (AC)</th>
+                  <th>Text (PS)</th>
+                  <th>Multimodal (AC)</th>
+                  <th>Multimodal (PS)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td class="model-cell gold">Gemini-2.5-Pro 🥇</td><td><a href="https://deepmind.google/models/gemini/pro/">Link</a></td><td>-</td><td>-</td><td>VLM</td><td>✓</td><td>64.7</td><td>80.8</td><td>58.7</td><td>77.9</td><td>68.7</td><td>82.8</td></tr>
+                <tr><td>2</td><td class="model-cell silver">Gemini-2.5-Flash 🥈</td><td><a href="https://deepmind.google/models/gemini/flash/">Link</a></td><td>2025-06-17</td><td>-</td><td>VLM</td><td>✓</td><td>60.5</td><td>78.4</td><td>57.0</td><td>77.5</td><td>62.9</td><td>79.0</td></tr>
+                <tr><td>3</td><td class="model-cell bronze">GPT-o3 🥉</td><td><a href="https://openai.com/index/introducing-o3-and-o4-mini/">Link</a></td><td>2025-04-16</td><td>-</td><td>VLM</td><td>✓</td><td>59.3</td><td>76.4</td><td>52.9</td><td>72.9</td><td>63.7</td><td>78.6</td></tr>
+                <tr><td>4</td><td class="model-cell">Seed-1.6-Thinking</td><td><a href="https://seed.bytedance.com/en/seed1_6">Link</a></td><td>2025-06-15</td><td>-</td><td>VLM</td><td>✓</td><td>58.4</td><td>75.2</td><td>53.0</td><td>73.0</td><td>62.0</td><td>76.6</td></tr>
+                <tr><td>5</td><td class="model-cell">Nano Banana</td><td><a href="https://aistudio.google.com/models/gemini-2-5-flash-image">Link</a></td><td>2025-08-26</td><td>-</td><td>UM</td><td>X</td><td>53.4</td><td>73.8</td><td>49.1</td><td>72.3</td><td>56.3</td><td>74.7</td></tr>
+                <tr><td>6</td><td class="model-cell">Gemini-2.5-Flash-No-Thinking</td><td><a href="https://deepmind.google/models/gemini/flash/">Link</a></td><td>2025-06-17</td><td>-</td><td>VLM</td><td>X</td><td>52.3</td><td>73.7</td><td>44.6</td><td>70.9</td><td>57.5</td><td>75.5</td></tr>
+                <tr><td>7</td><td class="model-cell">GLM-4.5V</td><td><a href="https://github.com/zai-org/GLM-V">Link</a></td><td>-</td><td>108B</td><td>VLM</td><td>✓</td><td>49.6</td><td>69.7</td><td>48.0</td><td>70.5</td><td>50.6</td><td>69.1</td></tr>
+                <tr><td>8</td><td class="model-cell">Mimo-VL-7B-RL</td><td><a href="https://github.com/XiaomiMiMo/MiMo-VL">Link</a></td><td>2508</td><td>7B</td><td>VLM</td><td>X</td><td>48.3</td><td>68.8</td><td>43.5</td><td>68.4</td><td>51.3</td><td>69.0</td></tr>
+                <tr><td>9</td><td class="model-cell">InternVL-3.5-8B</td><td><a href="https://huggingface.co/OpenGVLab/InternVL3_5-8B">Link</a></td><td>-</td><td>8B</td><td>VLM</td><td>✓</td><td>40.8</td><td>62.8</td><td>38.5</td><td>64.0</td><td>42.2</td><td>62.0</td></tr>
+                <tr><td>10</td><td class="model-cell">GPT-4.1-mini</td><td><a href="https://platform.openai.com/docs/models/gpt-4.1-mini">Link</a></td><td>-</td><td>-</td><td>VLM</td><td>X</td><td>33.3</td><td>60.0</td><td>33.3</td><td>62.0</td><td>33.3</td><td>58.6</td></tr>
+                <tr><td>11</td><td class="model-cell">GLM-4.1V-9B</td><td><a href="https://github.com/zai-org/GLM-V">Link</a></td><td>-</td><td>9B</td><td>VLM</td><td>✓</td><td>29.0</td><td>53.4</td><td>27.8</td><td>54.4</td><td>29.9</td><td>52.7</td></tr>
+                <tr><td>12</td><td class="model-cell">Claude-Sonnet-4</td><td><a href="https://www.anthropic.com/news/claude-4">Link</a></td><td>2025-05-23</td><td>-</td><td>VLM</td><td>X</td><td>28.1</td><td>56.4</td><td>31.5</td><td>60.9</td><td>25.8</td><td>53.4</td></tr>
+                <tr><td>13</td><td class="model-cell">GPT-4.1</td><td><a href="https://platform.openai.com/docs/models/gpt-4.1">Link</a></td><td>-</td><td>-</td><td>VLM</td><td>X</td><td>26.0</td><td>53.9</td><td>26.6</td><td>56.5</td><td>25.6</td><td>52.2</td></tr>
+                <tr><td>14</td><td class="model-cell">CodePlot-CoT</td><td><a href="https://huggingface.co/gogoduan/CodePlot-CoT">Link</a></td><td>-</td><td>32B</td><td>VLM</td><td>X</td><td>22.1</td><td>47.0</td><td>31.6</td><td>53.8</td><td>15.8</td><td>42.4</td></tr>
+                <tr><td>15</td><td class="model-cell">Gemini-2.0-Flash</td><td><a href="https://aistudio.google.com/prompts/new_chat?model=gemini-2.0-flash-exp">Link</a></td><td>-</td><td>-</td><td>VLM</td><td>X</td><td>20.6</td><td>50.7</td><td>24.1</td><td>56.1</td><td>18.3</td><td>47.0</td></tr>
+                <tr><td>16</td><td class="model-cell">Keye-VL-1.5</td><td><a href="https://github.com/Kwai-Keye/Keye">Link</a></td><td>-</td><td>8B</td><td>VLM</td><td>X</td><td>17.3</td><td>38.2</td><td>20.2</td><td>44.4</td><td>15.4</td><td>34.0</td></tr>
+                <tr><td>17</td><td class="model-cell">Gemma3</td><td><a href="https://deepmind.google/models/gemma/gemma-3/">Link</a></td><td>-</td><td>27B</td><td>VLM</td><td>X</td><td>16.1</td><td>44.8</td><td>19.2</td><td>50.8</td><td>14.1</td><td>40.8</td></tr>
+                <tr><td>18</td><td class="model-cell">Qwen-2.5-VL-72B</td><td><a href="https://modelscope.cn/models/Qwen/Qwen2.5-VL-72B-Instruct">Link</a></td><td>-</td><td>72B</td><td>VLM</td><td>X</td><td>13.7</td><td>40.8</td><td>15.3</td><td>44.6</td><td>12.7</td><td>38.2</td></tr>
+                <tr><td>19</td><td class="model-cell">Bagel-Zebra-CoT</td><td><a href="https://github.com/multimodal-reasoning-lab/Bagel-Zebra-CoT">Link</a></td><td>-</td><td>7B</td><td>UM</td><td>X</td><td>10.1</td><td>34.1</td><td>13.9</td><td>41.5</td><td>7.6</td><td>29.1</td></tr>
+                <tr><td>20</td><td class="model-cell">Qwen-2.5-VL-32B</td><td><a href="https://modelscope.cn/models/Qwen/Qwen2.5-VL-32B-Instruct">Link</a></td><td>-</td><td>32B</td><td>VLM</td><td>X</td><td>10.0</td><td>33.7</td><td>10.6</td><td>36.9</td><td>9.6</td><td>31.5</td></tr>
+                <tr><td>21</td><td class="model-cell">GPT-4.1-nano</td><td><a href="https://platform.openai.com/docs/models/gpt-4.1-nano">Link</a></td><td>-</td><td>-</td><td>VLM</td><td>X</td><td>9.1</td><td>38.5</td><td>13.1</td><td>45.9</td><td>6.4</td><td>33.6</td></tr>
+                <tr><td>22</td><td class="model-cell">InternVL-3.5-8B-No-Thinking</td><td><a href="https://huggingface.co/OpenGVLab/InternVL3_5-8B">Link</a></td><td>-</td><td>8B</td><td>VLM</td><td>X</td><td>7.9</td><td>31.4</td><td>9.2</td><td>35.6</td><td>7.0</td><td>28.6</td></tr>
+                <tr><td>23</td><td class="model-cell">Bagel</td><td><a href="https://github.com/ByteDance-Seed/Bagel">Link</a></td><td>-</td><td>7B</td><td>UM</td><td>X</td><td>7.6</td><td>27.6</td><td>8.5</td><td>32.9</td><td>7.0</td><td>24.0</td></tr>
+                <tr><td>24</td><td class="model-cell">Qwen-2.5-VL-3B</td><td><a href="https://modelscope.cn/models/Qwen/Qwen2.5-VL-3B-Instruct">Link</a></td><td>-</td><td>3B</td><td>VLM</td><td>X</td><td>5.3</td><td>27.5</td><td>7.9</td><td>33.4</td><td>3.6</td><td>23.6</td></tr>
+                <tr><td>25</td><td class="model-cell">GPT-4o</td><td><a href="https://platform.openai.com/docs/models/gpt-4o">Link</a></td><td>2024-11-20</td><td>-</td><td>VLM</td><td>X</td><td>4.3</td><td>30.4</td><td>5.7</td><td>34.6</td><td>3.4</td><td>27.6</td></tr>
+                <tr><td>26</td><td class="model-cell">Qwen-2.5-VL-7B</td><td><a href="https://modelscope.cn/models/Qwen/Qwen2.5-VL-7B-Instruct">Link</a></td><td>-</td><td>7B</td><td>VLM</td><td>X</td><td>3.0</td><td>13.8</td><td>4.5</td><td>18.0</td><td>2.0</td><td>11.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+          <!-- LLMs -->
+          <div id="leaderboard-tab-2" class="leaderboard-content">
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>#</th><th>Model</th><th>Link</th><th>Version</th><th>#Params</th><th>Type</th><th>Thinking</th>
+                    <th>Text (AC)</th><th>Text (PS)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td class="model-cell">Deepseek-R1</td><td><a href="https://github.com/deepseek-ai/DeepSeek-R1">Link</a></td><td>-</td><td>671B</td><td>LLM</td><td>✓</td><td>49.5</td><td>69.9</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered m-6">
+      <div class="column is-max-desktop has-text-centered">
+        <h2 class="title is-3" id="visualization">
+          Visualization
+        </h2>
+        <p>🚨🚨🚨 <strong>Note!</strong> The data here is heavily compressed for easier visualization.</p><br>
+        <iframe src="visualizer/explore.html" style="width: 72%;min-height: 100vh; border-radius: 20px;"></iframe>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="section" id="bibtex">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code></code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('#leaderboard-tabs li');
+      const tabContent = document.querySelectorAll('.leaderboard-content');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.dataset.tab;
+          tabs.forEach(item => item.classList.remove('is-active'));
+          tabContent.forEach(content => content.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          document.getElementById('leaderboard-tab-' + tabId).classList.add('is-active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
