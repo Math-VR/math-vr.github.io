@@ -52,7 +52,7 @@ input[type=button] {
     flex-direction: column;
     /* justify-content: space-around; */
     align-items: center;
-    width: 30vw;
+    width: 25vw;
     padding-top: 40px;
     color: rgba(255, 255, 255, 0.75);
 }
@@ -84,9 +84,9 @@ input[type=button] {
 
 #display {
     float: right;
-    width: 60vw;
+    width: 70vw;
     transition: 0.5s;
-    padding: 0px 10vw;
+    padding: 0px 5vw;
     color: rgba(255, 255, 255, 0.75);
     z-index: 1;
 }
@@ -105,30 +105,28 @@ input[type=button] {
     /* height: 200vh; */
     width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
 }
 
 .display-col {
-    width: 48%;
-}
-@media screen and (max-width: 600px) {
-    .display-col {
-        width: 100%;
-    }
+    width: 100%;
+    margin: 0;
 }
 
 .box {
-    padding: 10px;
-    margin: 0;
+    padding: 25px;
+    margin: 10px 0;
     background-color: rgb(31, 38, 52);
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     /* box-shadow: 5px 5px 5px rgba(0,0,0,0.2); */
     overflow-y: auto;
     max-height: 100vh;
-    max-width: 89vw;
+    width: 100%;
+    min-width: 500px;
+    min-height: 200px;
 }
 
 #title {
@@ -226,42 +224,42 @@ input[type=button] {
 
 /* 统一字体大小和颜色 */
 .question-txt {
-    font-size: 16px !important;
+    font-size: 18px !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    line-height: 1.5;
+    line-height: 1.6;
     white-space: pre-wrap; /* 保留换行符和空格 */
     word-wrap: break-word; /* 长单词自动换行 */
     overflow-wrap: break-word; /* 现代浏览器的换行支持 */
 }
 
 .analysis-txt {
-    font-size: 16px !important;
+    font-size: 18px !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    line-height: 1.5;
+    line-height: 1.6;
     white-space: pre-wrap; /* 保留换行符和空格 */
     word-wrap: break-word; /* 长单词自动换行 */
     overflow-wrap: break-word; /* 现代浏览器的换行支持 */
 }
 
 .meta-txt {
-    font-size: 14px !important;
+    font-size: 16px !important;
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* 确保段落内的文本样式一致 */
 .question-txt p {
-    font-size: 16px !important;
+    font-size: 18px !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    margin: 8px 0;
+    margin: 12px 0;
     white-space: pre-wrap; /* 保留换行符 */
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
 .analysis-txt p {
-    font-size: 16px !important;
+    font-size: 18px !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    margin: 8px 0;
+    margin: 12px 0;
     white-space: pre-wrap; /* 保留换行符 */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -269,14 +267,14 @@ input[type=button] {
 
 /* 列表样式 */
 .question-txt ul, .analysis-txt ul {
-    margin: 8px 0;
-    padding-left: 20px;
+    margin: 12px 0;
+    padding-left: 25px;
 }
 
 .question-txt li, .analysis-txt li {
-    font-size: 16px !important;
+    font-size: 18px !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    margin: 4px 0;
+    margin: 6px 0;
     white-space: pre-wrap; /* 保留换行符 */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -305,15 +303,15 @@ input[type=button] {
 
 /* MathJax 数学公式样式调整 */
 .MathJax {
-    font-size: 16px !important;
+    font-size: 18px !important;
     color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .MathJax_Display {
-    font-size: 18px !important;
+    font-size: 20px !important;
     color: rgba(255, 255, 255, 0.9) !important;
     text-align: center;
-    margin: 16px 0;
+    margin: 20px 0;
 }
 
 /* 确保 MathJax 渲染的公式与文本颜色一致 */

@@ -34,10 +34,8 @@ let display = document.getElementById("display");
 optbtn.addEventListener("click", openNav);
 closebtn.addEventListener("click", closeNav);
 
-// Responsive: if screen is narrow, body only displays one column
-if (window.innerWidth < 600) {
-    body.style.flexDirection = "column";
-}
+// 单列布局，不需要复杂的响应式调整
+// 内容将垂直排列，充分利用宽度
 
 // Set up the data filters and display the page
 let filters = {};
@@ -97,8 +95,8 @@ function openNav() {
         display.style.width = "0vw";
         display.style.padding = "0";
     } else {
-        optionpanel.style.width = "30vw";
-        display.style.width = "50vw";
+        optionpanel.style.width = "25vw";
+        display.style.width = "70vw";
     }
     for (each of optionpanel.children) 
         each.style.display = "block";
@@ -134,9 +132,8 @@ function create_page(d) {
     if (d.length === 0) {
         body.innerHTML = "<p>No number satisfies All the filters.</p>";
     } else {
-        col1 = create_col(d.slice(0, d.length / 2));
-        col2 = create_col(d.slice(d.length / 2));
-        body.innerHTML = col1 + col2;
+        // 改为一列布局，所有内容垂直排列
+        body.innerHTML = create_col(d);
     }
     reflow(body);
     console.log("reflowed");
