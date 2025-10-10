@@ -308,7 +308,10 @@
           tabs.forEach(item => item.classList.remove('is-active'));
           tabContent.forEach(content => content.classList.remove('is-active'));
           tab.classList.add('is-active');
-          document.getElementById('leaderboard-tab-' + tabId).classList.add('is-active');
+          const targetId = 'leaderboard-tab-' + tabId;
+          document.getElementById(targetId).classList.add('is-active');
+          // 切换标签时触发一次排序，确保显示正确顺序
+          sortLeaderboardTable(targetId);
         });
       });
 
